@@ -15,24 +15,21 @@
             var wins = 0;
             var losses = 0;
 
-            // functions to updateGuessesLeft, updateLetterToGuess and updateGuessesSoFar
-            // updateGuessesLeft
+
+            //  3 functions updateGuessesLeft, updateLetterToGuess and updateGuessesSoFar
+
             var updateGuessesLeft = function () {
-                // grab HTML element and set equal to the guessesLeft
-                // then display the guessesLeft on page
-                document.querySelector("#guesses-left").innerHTML = guessesLeft;
+                document.querySelector("#guesses-left").textContent = guessesLeft;
             };
 
             // updateLetterToGuess
             var updateLetterToGuess = function () {
-                // take random letterToGuess and assign it based on a random generator that only looks at choices of correct answers
                 letterToGuess = choices[Math.floor(Math.random() * choices.length)];
             };
 
             // updateGuessesSoFar
             var updateGuessesSoFar = function () {
-                // Take guessed letters and display it separaeted by a comma on the page
-                document.querySelector("#guesses-so-far").innerHTML = guessesSoFar.join(", ");
+                document.querySelector("#guesses-so-far").textContent = guessesSoFar.join(" , ");
             };
 
 
@@ -49,24 +46,24 @@
             updateLetterToGuess();
             updateGuessesLeft();
 
-            // function that captures a key event 
+ 
+            // function to capture letters pressed
             document.onkeyup = function (event) {
                 // reduce guess by 1
                 guessesLeft--;
 
-                // * important to lowercase letter pressed
-                // this makes the letter lowercase
-                var letter = String.fromCharCode(event.which).toLowerCase();
+                // makes letter pressed lowercase
+                var userGuessLower = String.fromCharCode(event.which).toLowerCase();
 
                 // to add the guess to the guessedLetters Array
-                guessesSoFar.push(letter);
+                guessesSoFar.push(userGuessLower);
 
                 // run the update functions
                 updateGuessesLeft();
                 updateGuessesSoFar();
 
                 // Check to see if the letter is a match
-                if (letter === letterToGuess) {
+                if (userGuessLower === letterToGuess) {
 
                     // if matched, count as win and update HTML to display the win
                     wins++;
@@ -74,9 +71,7 @@
 
                     // Reset the game
                     reset();
-                }
-
-                // If out of guesses then,
+                } 
                 if (guessesLeft === 0) {
 
                     // then the user lost and the HTML needs to update to display the loss
