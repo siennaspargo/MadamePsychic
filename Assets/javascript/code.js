@@ -51,6 +51,8 @@
 
             var reset = function () {
                 guessesLeft = 9;
+                wins = 0;
+                losses = 0;
                 guessedLetters = [];
                 updateLetterToGuess();
                 updateGuessesLeft();
@@ -59,4 +61,5 @@
             
             updateLetterToGuess();
             updateGuessesLeft();
+            reset();
  
